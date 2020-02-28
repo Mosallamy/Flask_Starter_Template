@@ -1,0 +1,177 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="col-md-7  mx-auto card card-body bg-light" dir="rtl" style="text-align: right">
+        <form method="POST" , action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Register an account</legend>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+
+                            <!----------------------------- firstname -------------------------------->
+                            <div class="form-group">
+                                {{ form.firstname.label(class="form-control-label") }}
+
+                                {% if form.firstname.errors %}
+                                    {{ form.firstname(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.firstname.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.firstname(class="form-control input-group-sm") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xs-12">
+                            <!----------------------------- lastname -------------------------------->
+                            <div class="form-group">
+                                {{ form.lastname.label(class="form-control-label") }}
+
+                                {% if form.lastname.errors %}
+                                    {{ form.lastname(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.lastname.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.lastname(class="form-control input-group-sm") }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <!----------------------------- Password -------------------------------->
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form.password.label(class="form-control-label") }}
+
+                                {% if form.password.errors %}
+                                    {{ form.password(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.password.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.password(class="form-control input-group-sm") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!----------------------------- Password Confirmation -------------------------------->
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form.confirm_password.label(class="form-control-label") }}
+
+                                {% if form.confirm_password.errors %}
+                                    {{ form.confirm_password(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.confirm_password.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.confirm_password(class="form-control input-group-sm") }}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <!----------------------------- Birth Date -------------------------------->
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="form-group mb-3">
+                                {{ form.birth_date.label(class="form-control-label") }}
+
+                                {% if form.birth_date.errors %}
+                                    {{ form.birth_date(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.birth_date.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.birth_date(class="form-control input-group-sm",id="daterange") }}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-xs-12">
+                            <!----------------------------- Phone -------------------------------->
+                            <div class="form-group mb-3">
+                                {{ form.phone.label(class="form-control-label") }}
+
+                                {% if form.phone.errors %}
+                                    {{ form.phone(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.phone.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.phone(class="form-control input-group-sm",id="daterange", placehodler="") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xs-12">
+                            <!----------------------------- Email -------------------------------->
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+
+
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control input-group-sm is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control input-group-sm") }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!----------------------------- Gender -------------------------------->
+                        <div class="form-check form-check-inline">
+                            {{ form.gender.label(class="form-check-label") }}
+
+                            {% if form.gender.errors %}
+                                {{ form.gender(class="form-control input-group-sm is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.specialization.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.gender(class="form-check-input") }}
+                            {% endif %}
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    {{ form.submit(class="form-control input-group-sm btn btn-outline-info") }}
+                </div>
+
+            </fieldset>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already have an account? <a class="ml-2" href="{{ url_for('Users.login') }}"> Login in </a>
+            </small>
+        </div>
+
+
+    </div>
+
+    <script>
+        $('#daterange').datepicker();
+    </script>
+
+
+{% endblock %}
