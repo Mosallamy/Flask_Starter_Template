@@ -29,7 +29,7 @@ def register():
         #print(birthDate
         #print(birthDate.strftime('%Y-%m-%d'))
 
-        user = User(firstname = form.firstname.data,lastname = form.lastname.data,password=hashed_password,email=form.email.data,birth_date=birthDate.strftime('%Y-%m-%d'),country=form.country.data,city=form.city.data,university=form.university.data,graduation_year=form.graduation_year.data,specialization=form.specialization.data,phone=form.phone.data,gender = form.gender.data)
+        user = User(firstname = form.firstname.data,lastname = form.lastname.data,password=hashed_password,email=form.email.data,birth_date=birthDate.strftime('%Y-%m-%d'),phone=form.phone.data,gender = form.gender.data)
         db.session.add(user)
         db.session.commit()
         flash(f'Welcome  { form.firstname.data}, Your account has been created successfully','success')
@@ -91,18 +91,14 @@ def account():
         current_user.lastname = form.lastname.data
         current_user.email = form.email.data
         current_user.phone = form.phone.data
-        print(type(current_user))
+
         if str(current_user.birth_date) == str(form.birth_date.data):
             current_user.birth_date = form.birth_date.data #birthDate.strftime('%Y-%m-%d')
         else:
             birthDate = datetime.datetime.strptime(form.birth_date.data, '%m/%d/%Y')
             current_user.birth_date = birthDate.strftime('%Y-%m-%d')
 
-        current_user.country = form.country.data
-        current_user.city = form.city.data
-        current_user.university = form.university.data
-        current_user.specialization = form.specialization.data
-        current_user.graduation_year = form.graduation_year.data
+
 
         db.session.commit()
 
@@ -115,11 +111,6 @@ def account():
         form.email.data = current_user.email
         form.phone.data = current_user.phone
         form.birth_date.data = current_user.birth_date
-        form.country.data = current_user.country
-        form.city.data = current_user.city
-        form.university.data = current_user.university
-        form.specialization.data = current_user.specialization
-        form.graduation_year.data = current_user.graduation_year
 
     return render_template('account.html',form=form)
 
